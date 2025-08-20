@@ -12,6 +12,22 @@ go install github.com/normalnormie/ccgit@latest
 
 ccgit is an automated git commit tool that captures an AI assistant's thinking process and uses it as commit messages. It continuously monitors Claude conversation logs and commits AI reasoning to git branches, creating meaningful development history that preserves the thought process behind each change.
 
+## Use Case
+
+This tool is designed for developers working with AI assistants (like Claude) who want to maintain a meaningful git history that captures not just *what* changed, but *why* the AI made those changes. Each commit message contains the AI's reasoning, making it easier to understand the development process and debug issues later.
+
+The continuous monitoring approach ensures reliable capture of AI thinking across multiple sessions, while the smart merging strategy keeps the main branch clean and up-to-date with all AI-assisted development work.
+
+## Example Multi-Session Workflow
+
+1. **Session A**: AI thinks about and creates `auth.go` → committed to branch `session-a`
+2. **Session Switch**: Switch to new Claude conversation → `session-a` merged to master
+3. **Session B**: AI thinks about and creates `database.go` → committed to branch `session-b`  
+4. **Return to Session A**: AI adds more to `auth.go` → only NEW thinking processed
+5. **Final State**: Both sessions merged to master with complete thinking history
+
+The tool maintains perfect alignment between AI reasoning and code changes across all sessions.
+
 ## How It Works
 
 ### Direct JSONL Monitoring
@@ -118,30 +134,8 @@ The tool uses a `ccgit.conf` file for persistent configuration:
 
 ## Architecture Advantages
 
-### No File System Events
-- **Eliminates Race Conditions**: No more missed file writes or duplicate triggers
-- **Consistent Polling**: Predictable 2-second polling interval
-- **Simpler Logic**: Direct file reading instead of complex event handling
-- **Better Reliability**: No dependency on file system notification accuracy
-
 ### Smart Session Management
 - **Session Continuity**: Returning to previous sessions only processes new content
 - **Clean Branch History**: Each session gets committed and merged properly
 - **No Lost Work**: Pending thinking always gets committed before switching
 - **Conflict Awareness**: User control over merge conflict handling
-
-## Use Case
-
-This tool is designed for developers working with AI assistants (like Claude) who want to maintain a meaningful git history that captures not just *what* changed, but *why* the AI made those changes. Each commit message contains the AI's reasoning, making it easier to understand the development process and debug issues later.
-
-The continuous monitoring approach ensures reliable capture of AI thinking across multiple sessions, while the smart merging strategy keeps the main branch clean and up-to-date with all AI-assisted development work.
-
-## Example Multi-Session Workflow
-
-1. **Session A**: AI thinks about and creates `auth.go` → committed to branch `session-a`
-2. **Session Switch**: Switch to new Claude conversation → `session-a` merged to master
-3. **Session B**: AI thinks about and creates `database.go` → committed to branch `session-b`  
-4. **Return to Session A**: AI adds more to `auth.go` → only NEW thinking processed
-5. **Final State**: Both sessions merged to master with complete thinking history
-
-The tool maintains perfect alignment between AI reasoning and code changes across all sessions.

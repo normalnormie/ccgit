@@ -1,10 +1,27 @@
 {
-  "config.LastPendingUUID": "",
-  "config.LastPendingThinking": "",
-  "simulate": true,
-  "verbose": true,
-  "ignore": [
-    ".git",
-    "ccgit.conf"
-  ]
+  "_comment_runtime": "=== RUNTIME STATE FIELDS - Auto-managed by ccgit, DO NOT modify manually ===",
+  
+  "lastProcessedUUID": "",
+  "waitingForThinking": false,
+  "accumulatedThinking": [],
+  "waitingTargetUUID": "",
+  "lastFilePosition": 0,
+  "monitoredFile": "",
+
+  "_comment_user": "=== USER CONFIGURABLE SETTINGS - Safe to modify these ===",
+  
+  "simulate": false,
+  "_simulate_description": "Set to true for dry-run mode: shows what would be committed without actually running git commands",
+  
+  "verbose": false,
+  "_verbose_description": "Set to true to enable detailed logging output for debugging and monitoring ccgit's operation",
+  
+  "mainbranch": "master",
+  "_mainbranch_description": "Name of the main git branch that session branches will be merged into. Common values: 'master', 'main', 'develop'",
+  
+  "quitonconflict": false,
+  "_quitonconflict_description": "Set to true to exit ccgit when merge conflicts occur, or false to continue operation and display conflict information",
+  
+  "projectsdir": "~/.claude/projects/",
+  "_projectsdir_description": "Directory where Claude stores conversation JSONL files. Supports tilde (~) expansion. Auto-falls back to ~/.config/claude/projects/ if primary location doesn't exist"
 }
