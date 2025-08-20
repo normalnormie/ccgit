@@ -1,0 +1,10 @@
+{
+  "config.LastPendingUUID": "",
+  "config.LastPendingThinking": "",
+  "simulate": true,
+  "verbose": true,
+  "ignore": [
+    ".git",
+    "ccgit.conf"
+  ]
+}
